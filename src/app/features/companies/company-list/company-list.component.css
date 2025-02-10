@@ -1,0 +1,142 @@
+:host {
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-add:hover {
+    background-color: #2980b9;
+  }
+  
+  .table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid #eee;
+  }
+  
+  .table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    color: #34495e;
+  }
+  
+  .company-name {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .status-cell {
+    width: 100px;
+  }
+  
+  .status-active {
+    color: #2ecc71;
+  }
+  
+  .status-inactive {
+    color: #e74c3c;
+  }
+  
+  .actions-cell {
+    width: 120px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .action-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-btn:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .action-btn.edit mat-icon {
+    color: #3498db;
+  }
+  
+  .action-btn.delete mat-icon {
+    color: #e74c3c;
+  }
+  
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  mat-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+  .error-snackbar {
+    background-color: #f44336;
+    color: white;
+  }
+
+  
