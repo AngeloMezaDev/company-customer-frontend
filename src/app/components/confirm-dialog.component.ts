@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     <div class="confirm-dialog">
         <div class="confirm-dialog-content">
             <h2 class="confirm-dialog-title">Confirmar eliminación</h2>
-            <p class="confirm-dialog-message">¿Está seguro que desea eliminar esta compañía?</p>
+            <p class="confirm-dialog-message">¿Está seguro que desea eliminar esta registro?</p>
             <div class="confirm-dialog-actions">
                 <button class="cancel-button" (click)="onNoClick()">Cancelar</button>
                 <button class="delete-button" (click)="onConfirm()">Eliminar</button>

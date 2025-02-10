@@ -5,6 +5,9 @@ import { CustomerService } from '../services/customer.service';
 import { CustomerModalComponent } from '../customer-modal/customer-modal.component';
 import { Customer } from '../models/customer.model';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from '../../../components/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-list',
@@ -134,7 +137,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         <h2>Administrador de clientes por compañia</h2>
         <button class="btn-add" (click)="openCreateModal()">
           <mat-icon>add</mat-icon>
-          Añadir cliente
+          <strong>Añadir</strong>
         </button>
       </div>
       
@@ -196,7 +199,7 @@ export class CustomerListComponent implements OnInit {
   isEditing = false;
   selectedCustomer?: Customer;
 
-  constructor(private customerService: CustomerService) {}
+  constructor(private customerService: CustomerService, private snackBar: MatSnackBar,  private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -229,20 +232,36 @@ export class CustomerListComponent implements OnInit {
 
   deleteCustomer(id?: number): void {
     if (!id) return;
-
-    if (confirm('¿Está seguro que desea eliminar este cliente?')) {
-      this.customerService.delete(id).subscribe({
-        next: () => {
-          // Remove the deleted customer from the list
-          this.customers = this.customers.filter(c => c.id !== id);
-          // TODO: Implement success notification
-        },
-        error: (error) => {
-          console.error('Error eliminando cliente', error);
-          // TODO: Implement error handling (show error message)
-        }
-      });
-    }
+    
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.customerService.delete(id).subscribe({
+          next: () => {
+            this.customers = this.customers.filter(c => c.id !== id);
+            
+            // Mostrar el MatSnackBar después de eliminar la compañía
+            this.snackBar.open('Cliente eliminado correctamente', 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'right',
+              verticalPosition: 'bottom'
+            });
+          },
+          error: (error) => {
+            console.error('Error eliminando el cliente', error);
+            
+            // Mostrar el MatSnackBar en caso de error al eliminar la compañía
+            this.snackBar.open('Error al eliminar el cliente', 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'right',
+              verticalPosition: 'bottom',
+              panelClass: ['error-snackbar']
+            });
+          }
+        });
+      }
+    });
   }
 
   closeModal(): void {
