@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
     { path: 'companies', component: CompanyListComponent },
     { path: 'customers', component: CustomerListComponent },
-    { path: '', redirectTo: '/companies', pathMatch: 'full' }
+    { path: '', redirectTo: '/companies', pathMatch: 'full' },
   ];
   
   @NgModule({
@@ -15,3 +15,4 @@ export const routes: Routes = [
   })
 
   export class AppRoutingModule { }
+
