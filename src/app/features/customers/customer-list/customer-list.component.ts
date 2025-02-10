@@ -131,7 +131,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   template: `
     <div class="container">
       <div class="header">
-        <h2>Customers</h2>
+        <h2>Administrador de clientes por compañia</h2>
         <button class="btn-add" (click)="openCreateModal()">
           <mat-icon>add</mat-icon>
           Añadir cliente
@@ -155,13 +155,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
               <td>{{ customer.firstName }}</td>
               <td>{{ customer.lastName }}</td>
               <td>{{ customer.email }}</td>
+              <td>{{ customer.companyId }}</td>
               <td class="text-center status-cell">
                 <mat-icon [ngClass]="{'status-active': customer.isActive === true, 'status-inactive': customer.isActive === false}"
                 [matTooltip]="customer.isActive ? 'Habilitado' : 'Deshabilitado'">
                   {{ customer.isActive === true ? 'check_circle' : 'cancel' }}
                 </mat-icon>
               </td>
-              <td>{{ customer.companyId }}</td>
               <td class="text-center">
                 <div class="actions">
                   <button class="action-btn edit" (click)="editCustomer(customer)">

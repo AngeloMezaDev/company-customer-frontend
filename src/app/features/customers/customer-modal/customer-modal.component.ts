@@ -6,11 +6,12 @@ import { CompanyService } from '../../companies/services/company.service';
 import { Customer } from '../models/customer.model';
 import { Company } from '../../companies/models/company.model';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-customer-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [CommonModule, FormsModule, MatIconModule,MatSlideToggleModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`
     .modal-overlay {
@@ -34,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
       background: white;
       border-radius: 8px;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -93,8 +94,10 @@ import { MatIconModule } from '@angular/material/icon';
     }
 
     .modal-footer {
+      
       display: flex;
       justify-content: flex-end;
+      margin-top:1.5rem;
       padding: 1rem 1.5rem;
       border-top: 1px solid #eee;
       gap: 1rem;
@@ -134,7 +137,22 @@ import { MatIconModule } from '@angular/material/icon';
     .close-btn:hover {
       color: #333;
     }
+    .enabled-toggle {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
+    .enabled-toggle label {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .enabled-toggle mat-slide-toggle {
+      margin-left: 0;
+    }
   `],
  template: `
  <div class="modal-overlay" [class.show]="isVisible">
@@ -274,7 +292,17 @@ import { MatIconModule } from '@angular/material/icon';
              La dirección es requerida
            </div>
          </div>
+         <div class="enabled-toggle">
+              <label>Habilitado</label>
+              <mat-slide-toggle 
+                [(ngModel)]="customerData.isActive"
+                name="isActive"
+                color="primary"
+              >
+              </mat-slide-toggle>
+            </div>
 
+            
          <div class="modal-footer">
            <button 
              type="button" 
